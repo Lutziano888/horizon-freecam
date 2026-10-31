@@ -1,14 +1,15 @@
 name = "Freecam"
 summary = "Fly the camera freely while your player stays where it is."
 description = """
-Press F4 to leave your body and fly the camera anywhere, through blocks. \
-Your player stays where it is and you see it from outside. Press F4 again \
-to snap back.
+Press F4 to leave your body and fly the camera anywhere. Your player stays \
+where it is and you see it from outside. Press F4 again to snap back.
 
 - WASD moves, Space goes up, Shift goes down, Ctrl flies 2.5x faster.
 - The mouse wheel changes the speed while flying.
+- Fair play mode (Options > Mods > Freecam): the camera can't fly through \
+blocks, so no peeking into caves or bases through walls.
 - Options > Mods > Freecam: change the key, the base speed (2 to 80 \
-blocks/s) and whether it works on servers.
+blocks/s), fair play, and whether it works on servers.
 - While flying, your player doesn't move, attack or use items.
 
 Some servers don't allow freecam: check their rules, or turn \

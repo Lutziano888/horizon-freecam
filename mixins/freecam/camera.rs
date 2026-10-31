@@ -33,7 +33,18 @@ fn freecam_camera(
         let game = &*game;
         fc::settings(|name| game.native_setting(fc::ID, name))
     };
-    match fc::step(input, settings) {
+    // Fair play: the camera is a small box that Horizon's own collision
+    // (`DismountHelper.canDismountTo`: blocks' real shapes and the world
+    // border) keeps out of blocks.
+    let free = |at: [f64; 3]| {
+        use horizon_core::geometry::{Aabb, Vec3};
+        let r = fc::RADIUS;
+        game.can_dismount_to(Aabb::new(
+            Vec3::new(at[0] - r, at[1] - r, at[2] - r),
+            Vec3::new(at[0] + r, at[1] + r, at[2] + r),
+        ))
+    };
+    match fc::step(input, settings, free) {
         Some((at, yaw, pitch)) => {
             ControlFlow::Break(Some((glam::DVec3::from_array(at), yaw, pitch)))
         }

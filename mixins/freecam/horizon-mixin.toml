@@ -1,6 +1,6 @@
 [mod]
 id = "freecam"
-version = "1.0.0"
+version = "1.1.0"
 priority = 100
 
 # The commit it was tested on. Besides Horizon's native hook points it hooks

@@ -1,7 +1,7 @@
 # Freecam (Horizon native mod)
 
-Press **F4** to leave your body and fly the camera freely, through blocks, while your player stays where it is. Press
-**F4** again to snap back.
+Press **F4** to leave your body and fly the camera freely while your player stays where it is. Press **F4** again to
+snap back. In **fair play** mode the camera can't fly through blocks.
 
 | Key | What it does while flying |
 |---|---|
@@ -10,9 +10,14 @@ Press **F4** to leave your body and fly the camera freely, through blocks, while
 | Ctrl | 2.5x faster |
 | Mouse wheel | Change the speed (0.1x to 10x) |
 
-Options > Mods > Freecam has the key and two settings: the base speed (2, 5, 10, 20, 40 or 80 blocks a second) and
-**Allowed on servers** (on by default; in your own worlds it always works). Some servers don't allow freecam: check
-their rules.
+Options > Mods > Freecam has the key and three settings:
+
+- **Speed**: 2, 5, 10, 20, 40 or 80 blocks a second.
+- **Fair play** (off by default): the camera is a small box (0.6 blocks) that can't pass through blocks, using the
+  blocks' real collision shapes: glass, fences and doors stop it, grass and flowers don't. No looking into caves or
+  bases through walls; the camera stops at a wall and slides along it.
+- **Allowed on servers** (on by default; in your own worlds it always works). Some servers don't allow freecam:
+  check their rules.
 
 While the camera flies, your player stands still, doesn't attack, mine or use items, and you see its body from
 outside. The world only shows the chunks loaded around your player.
@@ -32,7 +37,7 @@ launcher builds into the game:
 | Hook | Where | What it does |
 |---|---|---|
 | `native_key`, `native_wheel`, `native_tick`, `native_mods`, `native_settings`, `native_settings_click` | Horizon's native hook points | The key, the wheel, giving the movement keys back after the tick, the Options > Mods row and settings |
-| `camera_view` (cancellable HEAD) | `game/perspective.rs` | The world is drawn from the free camera |
+| `camera_view` (cancellable HEAD) | `game/perspective.rs` | The world is drawn from the free camera; in fair play it is kept out of blocks with `can_dismount_to` |
 | `turn_player` (cancellable HEAD) | `game/perspective.rs` | The mouse turns the camera, not the player |
 | `own_body_in_view` (cancellable HEAD) | `game/perspective.rs` | The player's body is drawn |
 | `hand_geometry` (cancellable HEAD) | `game.rs` | No first-person hand |
@@ -53,10 +58,10 @@ commit (the launcher's "Build anyway" often still works in between).
 ## Build and check
 
 ```sh
-cargo test                                   # the logic: settings, flying, turning, the wheel
+cargo test                                   # the logic: settings, flying, fair play, turning, the wheel
 horizon-mixins apply --workspace ../horizon --mods mixins --out ../stage   # Horizon at the pinned commit
 (cd ../stage && cargo check --locked -p horizon-client --bin horizon-client)
-python3 tools/package.py                     # target/freecam-1.0.0.hnmod
+python3 tools/package.py                     # target/freecam-1.1.0.hnmod
 ```
 
 `horizon-mixins` refuses symbolic links in the workspace: export Horizon at the pinned commit
