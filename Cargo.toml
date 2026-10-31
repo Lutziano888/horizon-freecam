@@ -1,11 +1,11 @@
 [package]
-name = "horizon-mod-freecam"
-version = "1.1.0"
+name = "horizon-mod-fair-freecam"
+version = "1.2.0"
 edition = "2024"
 license = "MIT"
 publish = false
-description = "Freecam for Horizon, a native mod: press a key to fly the camera freely while your player stays where it is."
+description = "Fair Freecam for Horizon, a native mod: press a key to fly the camera freely while your player stays where it is."
 
 # The mod's logic and its tests: the same file the bundle adds to the game.
 [lib]
-path = "mixins/freecam/runtime.rs"
+path = "mixins/fair_freecam/runtime.rs"

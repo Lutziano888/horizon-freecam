@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
-"""Packages the bundle as target/freecam-<version>.hnmod for a GitHub release.
+"""Packages the bundle as target/fair_freecam-<version>.hnmod for a GitHub release.
 
-The archive holds horizon-native.json and mixins/freecam/ (only .rs and .toml
+The archive holds horizon-native.json and mixins/fair_freecam/ (only .rs and .toml
 files) with fixed dates, so the same source always gives the same bytes.
 """
 import hashlib
@@ -16,7 +16,7 @@ GAME = "26.3"
 
 def main():
     compat = json.loads((ROOT / "compatibility.json").read_text())
-    bundle = ROOT / "mixins" / "freecam"
+    bundle = ROOT / "mixins" / "fair_freecam"
     mixin = tomllib.loads((bundle / "horizon-mixin.toml").read_text())
     mod = mixin["mod"]
     if mixin.get("compatibility", {}).get("horizon_revision") != compat["horizon_revision"]:

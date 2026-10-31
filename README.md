@@ -1,7 +1,9 @@
-# Freecam (Horizon native mod)
+# Fair Freecam (Horizon native mod)
 
 Press **F4** to leave your body and fly the camera freely while your player stays where it is. Press **F4** again to
 snap back. In **fair play** mode the camera can't fly through blocks.
+
+Its id is `fair_freecam`, so it installs and builds next to other freecam mods without clashing.
 
 | Key | What it does while flying |
 |---|---|
@@ -10,7 +12,7 @@ snap back. In **fair play** mode the camera can't fly through blocks.
 | Ctrl | 2.5x faster |
 | Mouse wheel | Change the speed (0.1x to 10x) |
 
-Options > Mods > Freecam has the key and three settings:
+Options > Mods > Fair Freecam has the key and three settings:
 
 - **Speed**: 2, 5, 10, 20, 40 or 80 blocks a second.
 - **Fair play** (off by default): the camera is a small box (0.6 blocks) that can't pass through blocks, using the
@@ -24,14 +26,14 @@ outside. The world only shows the chunks loaded around your player.
 
 ## Install
 
-In the Horizon launcher: Mods → Freecam → Install, then build the game with your native mods (Settings → Game →
+In the Horizon launcher: Mods → Fair Freecam → Install, then build the game with your native mods (Settings → Game →
 Native mods). The launcher downloads its own Rust and builds Horizon with the mod; see Horizon's
 [native mods](https://github.com/horizon-rust/horizon/blob/main/docs/native-mods.md). Native mods run with the
 game's full access to your computer: install them only from authors you trust.
 
 ## How it works
 
-It is a [horizon-mixins](https://github.com/horizon-rust/horizon-mixins) bundle (`mixins/freecam/`) that the
+It is a [horizon-mixins](https://github.com/horizon-rust/horizon-mixins) bundle (`mixins/fair_freecam/`) that the
 launcher builds into the game:
 
 | Hook | Where | What it does |
@@ -50,10 +52,10 @@ commit (the launcher's "Build anyway" often still works in between).
 
 | File | What it is |
 |---|---|
-| `mixins/freecam/horizon-mixin.toml` | The bundle: one module and the HEAD hooks |
-| `mixins/freecam/runtime.rs` | The mod's logic and state (`game::freecam` in the game); also this crate's library, for its tests |
-| `mixins/freecam/*.rs` | One small helper per hook |
-| `tools/package.py` | Packages `target/freecam-<version>.hnmod` for a release |
+| `mixins/fair_freecam/horizon-mixin.toml` | The bundle: one module and the HEAD hooks |
+| `mixins/fair_freecam/runtime.rs` | The mod's logic and state (`game::fair_freecam` in the game); also this crate's library, for its tests |
+| `mixins/fair_freecam/*.rs` | One small helper per hook |
+| `tools/package.py` | Packages `target/fair_freecam-<version>.hnmod` for a release |
 
 ## Build and check
 
@@ -61,7 +63,7 @@ commit (the launcher's "Build anyway" often still works in between).
 cargo test                                   # the logic: settings, flying, fair play, turning, the wheel
 horizon-mixins apply --workspace ../horizon --mods mixins --out ../stage   # Horizon at the pinned commit
 (cd ../stage && cargo check --locked -p horizon-client --bin horizon-client)
-python3 tools/package.py                     # target/freecam-1.1.0.hnmod
+python3 tools/package.py                     # target/fair_freecam-1.2.0.hnmod
 ```
 
 `horizon-mixins` refuses symbolic links in the workspace: export Horizon at the pinned commit
